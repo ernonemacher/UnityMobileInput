@@ -212,8 +212,9 @@ namespace Mopsicus.Plugins {
         /// Show native on enable
         /// </summary>
         private void OnEnable () {
-            if (_isMobileInputCreated) {
-                this.SetVisible (true);
+            if(MobileInput.Plugin != null) {
+                base.Start();
+                StartCoroutine(InitialzieOnNextFrame());
             }
         }
 
@@ -221,10 +222,7 @@ namespace Mopsicus.Plugins {
         /// Hide native on disable
         /// </summary>
         private void OnDisable () {
-            if (_isMobileInputCreated) {
-                this.SetFocus (false);
-                this.SetVisible (false);
-            }
+            RemoveNative();
         }
 
         /// <summary>
@@ -233,6 +231,14 @@ namespace Mopsicus.Plugins {
         protected override void OnDestroy () {
             RemoveNative ();
             base.OnDestroy ();
+        }
+
+        public void SetCustomVisibilityOff() {
+            if (_isMobileInputCreated) {
+                this.SetFocus(false);
+                this.SetVisible(false);
+                RemoveNative();
+            }
         }
 
         /// <summary>

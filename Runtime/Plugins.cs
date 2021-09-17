@@ -8,6 +8,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using NiceJson;
+using Firebase.Crashlytics;
 #if UNITY_IOS
 using System.Runtime.InteropServices;
 #endif
@@ -69,11 +70,6 @@ namespace Mopsicus.Plugins
         /// </summary>
         const string _dataReceiver = "OnDataReceive";
 
-        /// <summary>
-        /// Dictionary of plugins
-        /// </summary>
-        private Dictionary<string, IPlugin> _plugins;
-
         private void Awake()
         {
             name = _dataObject;
@@ -81,26 +77,11 @@ namespace Mopsicus.Plugins
             InitPlugins();
         }
 
-        private void OnDestroy()
-        {
-            _plugins = null;
-        }
-
         /// <summary>
         /// Init all plugins in app
         /// </summary>
         void InitPlugins()
-        {
-            gameObject.AddComponent<MobileInput>();
-            //
-            // other plugins
-            //			
-            IPlugin[] plugins = GetComponents<IPlugin>();
-            _plugins = new Dictionary<string, IPlugin>(plugins.Length);
-            foreach (var item in plugins)
-            {
-                _plugins.Add(item.Name, item);
-            }
+        {		
             JsonObject data = new JsonObject();
             data["object"] = _dataObject;
             data["receiver"] = _dataReceiver;
@@ -119,16 +100,15 @@ namespace Mopsicus.Plugins
             try
             {
                 JsonObject info = (JsonObject)JsonNode.ParseJsonString(data);
-                if (_plugins.ContainsKey(info["name"]))
+                if (MobileInput.Plugin != null)
                 {
-                    IPlugin plugin = _plugins[info["name"]];
                     if (info.ContainsKey("error"))
                     {
-                        plugin.OnError(info);
+                        MobileInput.Plugin.OnError(info);
                     }
                     else
                     {
-                        plugin.OnData(info);
+                        MobileInput.Plugin.OnData(info);
                     }
                 }
                 else
@@ -138,6 +118,7 @@ namespace Mopsicus.Plugins
             }
             catch (Exception e)
             {
+                Crashlytics.LogException(e);
                 Debug.LogError(string.Format("Plugins receive error: {0}, stack: {1}", e.Message, e.StackTrace));
             }
 

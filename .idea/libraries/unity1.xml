@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="unity1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Android~/UnityMobileInput/mobileinput/libs/unity.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

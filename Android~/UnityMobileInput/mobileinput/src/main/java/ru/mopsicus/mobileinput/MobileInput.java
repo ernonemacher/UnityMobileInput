@@ -378,6 +378,7 @@ public class MobileInput {
     private void SetText(String newText) {
         if (edit != null) {
             edit.setText(newText);
+            edit.setSelection(GetText().length());
         }
     }
 

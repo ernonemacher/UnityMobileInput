@@ -12,6 +12,7 @@ using System.Text;
 using NiceJson;
 using UnityEngine;
 using UnityEngine.Networking;
+using Firebase.Crashlytics;
 #if UNITY_IOS
 using System.Runtime.InteropServices;
 #endif
@@ -118,6 +119,8 @@ namespace Mopsicus.Plugins
         /// </summary>
         private int _counter = 0;
 
+        private static bool _hasInitialized = false;
+
 #if UNITY_IOS
         /// <summary>
         /// Send data to plugin input
@@ -143,10 +146,11 @@ namespace Mopsicus.Plugins
         /// </summary>
         private void Awake()
         {
-            if ((object)_instance == null)
+            _instance = GetComponent<MobileInput>();
+            if (!_hasInitialized)
             {
-                _instance = GetComponent<MobileInput>();
                 Init();
+                _hasInitialized = true;
             }
         }
 
@@ -192,7 +196,7 @@ namespace Mopsicus.Plugins
                         break;
                     default:
                         int id = response["id"];
-                        if (_inputs.ContainsKey(id))
+                        if (_instance._inputs.ContainsKey(id))
                         {
                             GetReceiver(id).Send(response);
                         }
@@ -202,6 +206,7 @@ namespace Mopsicus.Plugins
             }
             catch (Exception e)
             {
+                Crashlytics.LogException(e);
                 Debug.LogError(string.Format("{0} plugin OnData error: {1}", GetType().Name, e.Message));
             }
         }
@@ -219,6 +224,7 @@ namespace Mopsicus.Plugins
             }
             catch (Exception e)
             {
+                Crashlytics.LogException(e);
                 Debug.LogError(string.Format("{0} plugin OnError error: {1}", GetType().Name, e.Message));
             }
         }
