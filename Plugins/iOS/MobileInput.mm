@@ -209,8 +209,8 @@ NSString *plugin;
     if (self = [super init]) {
         viewController = controller;
         inputId = idInput;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     }
     return self;
 }
@@ -584,7 +584,7 @@ BOOL multiline;
     [self onTextChange:theTextField.text];
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification {
+- (void)keyboardDidShow:(NSNotification *)notification {
     if (![editView isFirstResponder]) {
         return;
     }
@@ -600,7 +600,7 @@ BOOL multiline;
     [self sendData:msg];
 }
 
-- (void)keyboardWillHide:(NSNotification *)notification {
+- (void)keyboardDidHide:(NSNotification *)notification {
     NSMutableDictionary *msg = [[NSMutableDictionary alloc] init];
     [msg setValue:KEYBOARD_ACTION forKey:@"msg"];
     [msg setValue:[NSNumber numberWithBool:NO] forKey:@"show"];
