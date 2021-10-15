@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./mobileinput/libs/unity.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/mobileinput/libs/unity.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

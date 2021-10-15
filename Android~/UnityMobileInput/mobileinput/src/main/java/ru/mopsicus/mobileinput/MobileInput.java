@@ -424,6 +424,9 @@ public class MobileInput {
 
     // Set new position and size
     private void SetRect(JSONObject data) {
+        if (edit == null) {
+            return;
+        }
         try {
             double x = data.getDouble("x") * (double) layout.getWidth();
             double y = data.getDouble("y") * (double) layout.getHeight();

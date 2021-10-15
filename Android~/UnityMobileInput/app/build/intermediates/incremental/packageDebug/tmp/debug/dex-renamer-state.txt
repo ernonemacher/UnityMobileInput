@@ -1,0 +1,4 @@
+#Thu Oct 14 19:05:58 BRT 2021
+base.0=/Users/eduardo/kepha/UnityMobileInput/Android~/UnityMobileInput/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

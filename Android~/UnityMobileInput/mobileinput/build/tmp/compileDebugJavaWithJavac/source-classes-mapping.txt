@@ -1,0 +1,19 @@
+ru/mopsicus/mobileinput/KeyboardProvider.java
+ ru.mopsicus.mobileinput.KeyboardProvider
+ ru.mopsicus.mobileinput.KeyboardProvider$1
+ru/mopsicus/mobileinput/KeyboardListener.java
+ ru.mopsicus.mobileinput.KeyboardListener
+ru/mopsicus/mobileinput/BuildConfig.java
+ ru.mopsicus.mobileinput.BuildConfig
+ru/mopsicus/mobileinput/MobileInput.java
+ ru.mopsicus.mobileinput.MobileInput
+ ru.mopsicus.mobileinput.MobileInput$1
+ ru.mopsicus.mobileinput.MobileInput$2
+ ru.mopsicus.mobileinput.MobileInput$3
+ru/mopsicus/mobileinput/KeyboardObserver.java
+ ru.mopsicus.mobileinput.KeyboardObserver
+ru/mopsicus/mobileinput/Plugin.java
+ ru.mopsicus.mobileinput.Plugin
+ ru.mopsicus.mobileinput.Plugin$1
+ ru.mopsicus.mobileinput.Plugin$2
+ ru.mopsicus.mobileinput.Plugin$3

@@ -1,0 +1,4 @@
+ru/mopsicus/common/Common.java
+ ru.mopsicus.common.Common
+ru/mopsicus/common/BuildConfig.java
+ ru.mopsicus.common.BuildConfig

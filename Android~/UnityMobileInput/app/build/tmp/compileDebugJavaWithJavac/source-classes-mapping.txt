@@ -1,0 +1,2 @@
+ru/mopsicus/unitymobileinput/BuildConfig.java
+ ru.mopsicus.unitymobileinput.BuildConfig

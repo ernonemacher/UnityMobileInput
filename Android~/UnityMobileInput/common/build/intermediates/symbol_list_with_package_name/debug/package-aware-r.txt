@@ -1,0 +1,2 @@
+ru.mopsicus.common
+string app_name
